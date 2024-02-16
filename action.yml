@@ -34,6 +34,7 @@ runs:
           git checkout -b cookiecutter
           git push -u origin cookiecutter
         fi
+      shell: bash
 
     - name: Checkout Cookiecutter Branch
       uses: actions/checkout@v3
@@ -49,6 +50,7 @@ runs:
       run: | 
         python3 -m pip install cookiecutter==2.5.0
         python3 -m pip install click==8.1.7
+      shell: bash
 
     - name: Generate Project Template
       run: |
@@ -58,6 +60,7 @@ runs:
         --email="${{ github.event.inputs.email }}" \
         --python_version="${{ github.event.inputs.python_version }}" \
         # Add more variables as needed
+      shell: bash
 
     - name: Push Generated Template to Branch
       run: |
@@ -67,3 +70,4 @@ runs:
         git add .
         git commit -m "Add new project template: ${{ github.event.inputs.project_name }}"
         git push origin "${{ github.event.inputs.project_name }}-template"
+      shell: bash
