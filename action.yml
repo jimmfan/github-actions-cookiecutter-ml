@@ -1,20 +1,18 @@
 name: Generate Cookiecutter Template
 
-on:
-  workflow_dispatch:
-    inputs:
-      project_name:
-        description: 'Project Name'
-        required: true
-      author:
-        description: 'Author'
-        default: 
-      email:
-        description: 'Email'
-      python_version:
-        description: 'Project python version'
-        default: '3.10'
-      # Add more inputs as needed based on your cookiecutter.json
+inputs:
+  project_name:
+    description: 'Project Name'
+    required: true
+  author:
+    description: 'Author'
+    default: 
+  email:
+    description: 'Email'
+  python_version:
+    description: 'Project python version'
+    default: '3.10'
+  # Add more inputs as needed based on your cookiecutter.json
 
 env:
   PYTHON_VERSION: '3.10' # Cookiecutter python version, not the project
