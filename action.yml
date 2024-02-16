@@ -1,0 +1,71 @@
+name: Generate Cookiecutter Template
+
+on:
+  workflow_dispatch:
+    inputs:
+      project_name:
+        description: 'Project Name'
+        required: true
+      author:
+        description: 'Author'
+        default: 
+      email:
+        description: 'Email'
+      python_version:
+        description: 'Project python version'
+        default: '3.10'
+      # Add more inputs as needed based on your cookiecutter.json
+
+env:
+  PYTHON_VERSION: '3.10' # Cookiecutter python version, not the project
+
+runs:
+  using: 'composite'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Create or switch to 'cookiecutter' branch
+        run: |
+          git fetch
+          if git branch -r | grep -qw "origin/cookiecutter"; then
+            echo "Branch exists on remote. Switching to it."
+            git checkout cookiecutter
+          else
+            echo "Branch does not exist. Creating it."
+            git checkout -b cookiecutter
+            git push -u origin cookiecutter
+          fi
+
+      - name: Checkout Cookiecutter Branch
+        uses: actions/checkout@v3
+        with:
+          ref: 'cookiecutter'
+
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install Cookiecutter
+        run: | 
+          python3 -m pip install cookiecutter==2.5.0
+          python3 -m pip install click==8.1.7
+
+      - name: Generate Project Template
+        run: |
+          python3 ./setup_project.py \
+          --project_name="${{ github.event.inputs.project_name }}" \
+          --author="${{ github.event.inputs.author }}" \
+          --email="${{ github.event.inputs.email }}" \
+          --python_version="${{ github.event.inputs.python_version }}" \
+          # Add more variables as needed
+
+      - name: Push Generated Template to Branch
+        run: |
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
+          git checkout -b "${{ github.event.inputs.project_name }}-template"
+          git add .
+          git commit -m "Add new project template: ${{ github.event.inputs.project_name }}"
+          git push origin "${{ github.event.inputs.project_name }}-template"
