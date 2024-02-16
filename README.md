@@ -1,5 +1,5 @@
 ### USAGE
-name: Cookiecutter Tempalte
+name: Cookiecutter Template
 
 on:
   workflow_dispatch:
