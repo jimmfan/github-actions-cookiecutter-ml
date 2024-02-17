@@ -9,7 +9,7 @@ def remove_if_exists(path):
         shutil.rmtree(path)
 
 # Define the path to your cookiecutter template
-TEMPLATE_PATH = './temp-template/ml-project-template'
+TEMPLATE_PATH = 'ml-project-template'
 
 @click.command()
 @click.option('--project_name', prompt='Project Name', default='ml_project', help='Project Name, used as the project directory name.')
