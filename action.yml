@@ -59,8 +59,8 @@ runs:
 
     - name: Generate Project Template
       run: |
-        cd ./ml-template
-        python3 generate_template.py \
+        cd ..
+        python3 ./ml-template/generate_template.py \
         --project_name="${{ github.event.inputs.project_name }}" \
         --author="${{ github.event.inputs.author }}" \
         --email="${{ github.event.inputs.email }}" \
