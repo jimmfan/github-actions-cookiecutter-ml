@@ -48,33 +48,30 @@ runs:
         python3 -m pip install click==8.1.7
       shell: bash
 
-    - name: Clone template repository for use with cookiecutter
+    - name: Setup inputs
       run: |
-        rm -rf .github
-        git clone https://github.com/jimmfan/github-actions-cookiecutter-ml.git 
-      shell: bash
+        echo '{"project_name": "${{ env.PROJECT_NAME }}", "author_name": "${{ env.AUTHOR_NAME }}"}' > cookiecutter.json
+   
+    - name: Run Cookiecutter
+      run: cookiecutter https://github.com/jimmfan/github-actions-cookiecutter-ml.git --no-input --config-file cookiecutter.json      
 
-    - name: list files
-      run: |
-        ls
-      shell: bash
+    # - name: Clone template repository for use with cookiecutter
+    #   run: |
+    #     rm -rf .github
+    #     cookiecutter https://github.com/jimmfan/github-actions-cookiecutter-ml.git 
+    #   shell: bash
 
-    - name: list files submodule1
+    - name: list all files
       run: |
-        ls github-actions-cookiecutter-ml
-      shell: bash
-
-    - name: list files submodule2
-      run: |
-        ls -R test_project
+        ls -R
       shell: bash
       continue-on-error: true
 
-    - name: Cat files 
-      run: |
-        cat test_project/pyproject.toml
-      shell: bash
-      continue-on-error: true      
+    # - name: Cat files 
+    #   run: |
+    #     cat test_project/pyproject.toml
+    #   shell: bash
+    #   continue-on-error: true      
 
     - name: Generate Project Template
       working-directory: github-actions-cookiecutter-ml
