@@ -66,7 +66,7 @@ runs:
 
     - name: list files submodule2
       run: |
-        ls test_project/template1
+        ls -R test_project
       shell: bash
       continue-on-error: true
 
