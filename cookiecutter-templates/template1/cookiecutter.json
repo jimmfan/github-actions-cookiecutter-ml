@@ -1,5 +1,5 @@
 {
-    "template_path": "{{cookiecutter.template_path}}",
+    "template_path": "",
     "project_name": "{{cookiecutter.project_name}}",
     "author": "{{cookiecutter.author}}",
     "email": "{{cookiecutter.email}}",
