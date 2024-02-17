@@ -20,12 +20,17 @@ TEMPLATE_PATH = 'ml-project-template'
 @click.option('--python_version', prompt='Python version', default='3.10', help='The Python version to use for the project.')
 
 def create_project(project_name, author, email, python_version):
-    timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
-    output_path = os.path.join(os.getcwd(), f"{project_name}_{timestamp}")
-    print(f"Output path for project: {output_path}")
-    
-    remove_if_exists(output_path)  # Ensure the directory is removed before creating a new project
+    # Use a general 'projects' directory to hold all generated projects
+    base_output_path = os.path.join(os.getcwd(), "generated-projects")
+    os.makedirs(base_output_path, exist_ok=True)  # Ensure the base directory exists
 
+    # Include the timestamp in the project's directory name to avoid conflicts
+    timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+    final_project_name = f"{project_name}_{timestamp}"
+    output_path = os.path.join(base_output_path, final_project_name)
+    print(f"Final output path for project: {output_path}")
+
+    # No need to manually remove the directory as we're ensuring unique names with timestamp
     cookiecutter(
         TEMPLATE_PATH,
         no_input=True,
@@ -35,10 +40,10 @@ def create_project(project_name, author, email, python_version):
             'email': email,
             'python_version': python_version
         },
-        output_dir=os.path.dirname(output_path)  # Set the output directory just above the project directory to avoid conflicts
+        output_dir=base_output_path  # Specify the base directory for projects
     )
 
-    click.echo(f'Project {project_name} created successfully in {output_path}.')
+    click.echo(f'Project {final_project_name} created successfully in {output_path}.')
 
 if __name__ == '__main__':
     create_project()
