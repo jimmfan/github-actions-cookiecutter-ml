@@ -6,19 +6,18 @@ inputs:
     required: true
   author:
     description: 'Author'
-    default: "default"
   email:
     description: 'Email'
   python_version:
     description: 'Project python version'
     default: '3.10'
   output_dir: 
-    default: "../"            
+    default: "../"
   # Add more inputs as needed based on your cookiecutter.json
 
 env:
-  PYTHON_VERSION: '3.10' # Cookiecutter python version, not the project
-  TEMP_DIR: ./temp-template
+  PYTHON_VERSION: '3.10' # Cookiecutter python version
+  TEMP_DIR: temp-template
 
 runs:
   using: 'composite'
@@ -52,23 +51,11 @@ runs:
 
     - name: Clone template repository for use with cookiecutter
       run: |
-        git clone https://github.com/jimmfan/github-actions-cookiecutter-ml.git ./temp-template
+        git clone https://github.com/jimmfan/github-actions-cookiecutter-ml.git ./${{ env.TFE_DIR }}
       shell: bash
-
-    - name: list files
-      run: |
-        ls
-      shell: bash
-      continue-on-error: true        
-
-    - name: list files temp-template
-      run: |
-        ls temp-template
-      shell: bash
-      continue-on-error: true  
 
     - name: Generate Project Template
-      working-directory: temp-template  # Sets the working directory for all commands in this step
+      working-directory: ${{ env.TFE_DIR }}  # Sets the working directory for all commands in this step
       run: |
         python3 generate_template.py \
         --project_name="${{ github.event.inputs.project_name }}" \
@@ -80,7 +67,7 @@ runs:
 
     - name: Push Generated Template to Branch
       run: |
-        rm -rf temp-template
+        rm -rf ${{ env.TFE_DIR }}
         git status  # Check which files are staged for commit
         git config --global user.name 'GitHub Action'
         git config --global user.email 'action@github.com'        
@@ -89,31 +76,3 @@ runs:
         git commit -m "Add new project template: ${{ github.event.inputs.project_name }}" || echo "No changes to commit"
         git push origin cookiecutter
       shell: bash
-
-    # - name: list files
-    #   run: |
-    #     ls
-    #   shell: bash
-    #   continue-on-error: true        
-
-    # - name: list files temp-template
-    #   run: |
-    #     ls test_project
-    #   shell: bash
-    #   continue-on-error: true        
-
-    # - name: Push Generated Template to Branch
-    #   run: |
-    #     cd temp-template/${{ github.event.inputs.project_name }}
-    #     shopt -s dotglob
-    #     mv * ../../  # Ensure this correctly moves files to the root of the repo
-    #     cd ../../
-    #     rm -rf temp-template
-    #     git status  # Check which files are staged for commit
-    #     git config --global user.name 'GitHub Action'
-    #     git config --global user.email 'action@github.com'        
-    #     git add -A  # Stage all changes
-    #     git status  # Confirm what's being committed
-    #     git commit -m "Add new project template: ${{ github.event.inputs.project_name }}" || echo "No changes to commit"
-    #     git push origin cookiecutter
-    #   shell: bash
