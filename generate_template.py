@@ -1,14 +1,16 @@
 import click
-# import os
-# import shutil
+import os
+import shutil
 from cookiecutter.main import cookiecutter
+import datetime
 
-# # Example function that attempts to remove an existing directory
-# def remove_if_exists(path):
-#     if os.path.exists(path) and os.path.isdir(path):
-#         shutil.rmtree(path)
+def remove_if_exists(path):
+    if os.path.exists(path) and os.path.isdir(path):
+        print(f"Removing existing directory: {path}")
+        shutil.rmtree(path)
+    else:
+        print(f"Directory does not exist, no need to remove: {path}")
 
-# Define the path to your cookiecutter template
 TEMPLATE_PATH = 'ml-project-template'
 
 @click.command()
@@ -18,10 +20,12 @@ TEMPLATE_PATH = 'ml-project-template'
 @click.option('--python_version', prompt='Python version', default='3.10', help='The Python version to use for the project.')
 
 def create_project(project_name, author, email, python_version):
-    # output_path = os.path.join(os.getcwd(), project_name)
-    # remove_if_exists(output_path)  # Remove the output directory if it exists    
+    timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+    output_path = os.path.join(os.getcwd(), f"{project_name}_{timestamp}")
+    print(f"Output path for project: {output_path}")
+    
+    remove_if_exists(output_path)  # Ensure the directory is removed before creating a new project
 
-    # Call cookiecutter to create the project using the collected inputs
     cookiecutter(
         TEMPLATE_PATH,
         no_input=True,
@@ -30,11 +34,11 @@ def create_project(project_name, author, email, python_version):
             'author': author,
             'email': email,
             'python_version': python_version
-            # Add other variables to pass to cookiecutter here
-        }
+        },
+        output_dir=os.path.dirname(output_path)  # Set the output directory just above the project directory to avoid conflicts
     )
 
-    click.echo(f'Project {project_name} created successfully.')
+    click.echo(f'Project {project_name} created successfully in {output_path}.')
 
 if __name__ == '__main__':
     create_project()
