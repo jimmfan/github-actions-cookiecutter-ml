@@ -55,7 +55,7 @@ runs:
     - name: Clone template repository for use with cookiecutter
       run: |
         rm -rf .github
-        git clone https://github.com/jimmfan/github-actions-cookiecutter-ml.git ./temp_cookiecutter_dir
+        git clone https://github.com/jimmfan/github-actions-cookiecutter-ml.git 
       shell: bash
 
     - name: list files
@@ -63,13 +63,8 @@ runs:
         ls
       shell: bash
 
-    - name: list files temp_dir
-      run: |
-        ls ./temp_cookiecutter_dir
-      shell: bash
-
     - name: Generate Project Template
-      working-directory: temp_cookiecutter_dir
+      # working-directory: temp_cookiecutter_dir
       run: |
         python3 generate_template.py \
         --template_path="${{ github.event.inputs.template_path }}" \
@@ -82,7 +77,6 @@ runs:
 
     - name: Push Generated Template to Branch
       run: |
-        rm -rf temp_cookiecutter_dir
         git status  # Check which files are staged for commit
         git config --global user.name 'GitHub Action'
         git config --global user.email 'action@github.com'        
