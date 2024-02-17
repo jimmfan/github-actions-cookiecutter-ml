@@ -6,7 +6,7 @@ inputs:
     required: true
   author:
     description: 'Author'
-    default: 
+    default: "default"
   email:
     description: 'Email'
   python_version:
