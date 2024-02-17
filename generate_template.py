@@ -10,12 +10,12 @@ from cookiecutter.main import cookiecutter
     default="template1",
     help="Path to your cookiecutter template.",
 )
-@click.option(
-    "--project_name",
-    prompt="Project Name",
-    default="ml_project",
-    help="Project directory name.",
-)
+# @click.option(
+#     "--project_name",
+#     prompt="Project Name",
+#     default="ml_project",
+#     help="Project directory name.",
+# )
 @click.option(
     "--author",
     prompt="Author name",
@@ -41,7 +41,11 @@ from cookiecutter.main import cookiecutter
     help="Output directory to where to create the template.",
 )
 def create_project(
-    template_path, project_name, author, email, python_version, output_dir
+    template_path, 
+    # project_name, 
+    author, email, 
+    python_version, 
+    output_dir
 ):
     # Call cookiecutter to create the project using the collected inputs
     cookiecutter(
@@ -49,7 +53,7 @@ def create_project(
         output_dir=output_dir,
         no_input=True,
         extra_context={
-            "project_name": project_name,
+            # "project_name": project_name,
             "author": author,
             "email": email,
             "python_version": python_version
@@ -58,7 +62,7 @@ def create_project(
         overwrite_if_exists=True,
     )
 
-    click.echo(f"Project {project_name} created successfully.")
+    click.echo(f"Template created successfully.")
 
 
 if __name__ == "__main__":
