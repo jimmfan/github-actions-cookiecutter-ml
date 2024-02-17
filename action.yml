@@ -51,11 +51,11 @@ runs:
 
     - name: Clone template repository for use with cookiecutter
       run: |
-        git clone https://github.com/jimmfan/github-actions-cookiecutter-ml.git ./${{ env.TFE_DIR }}
+        git clone https://github.com/jimmfan/github-actions-cookiecutter-ml.git ./${{ env.TEMP_DIR }}
       shell: bash
 
     - name: Generate Project Template
-      working-directory: ${{ env.TFE_DIR }}  # Sets the working directory for all commands in this step
+      working-directory: ${{ env.TEMP_DIR }}  # Sets the working directory for all commands in this step
       run: |
         python3 generate_template.py \
         --project_name="${{ github.event.inputs.project_name }}" \
@@ -67,7 +67,7 @@ runs:
 
     - name: Push Generated Template to Branch
       run: |
-        rm -rf ${{ env.TFE_DIR }}
+        rm -rf ${{ env.TEMP_DIR }}
         git status  # Check which files are staged for commit
         git config --global user.name 'GitHub Action'
         git config --global user.email 'action@github.com'        
