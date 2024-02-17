@@ -75,6 +75,7 @@ runs:
       run: |
         python3 generate_template.py \
         --template_path="${{ github.event.inputs.template_path }}" \
+        --project_name="${{ github.event.inputs.project_name }}" \
         --author="${{ github.event.inputs.author }}" \
         --email="${{ github.event.inputs.email }}" \
         --python_version="${{ github.event.inputs.python_version }}" \
