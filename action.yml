@@ -63,6 +63,16 @@ runs:
         ls
       shell: bash
 
+    - name: list files submodule1
+      run: |
+        ls github-actions-cookiecutter-ml
+      shell: bash
+
+    - name: list files submodule2
+      run: |
+        ls ${{ github.event.inputs.project_name }}
+      shell: bash      
+
     - name: Generate Project Template
       # working-directory: temp_cookiecutter_dir
       run: |
