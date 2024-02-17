@@ -55,7 +55,19 @@ runs:
     - name: Clone template repository for use with cookiecutter
       run: |
         git clone https://github.com/jimmfan/github-actions-cookiecutter-ml.git ./ml-template
-      shell: bash      
+      shell: bash
+
+    - name: List files
+      run: |
+        ls
+      shell: bash
+      continue-on-error: true
+
+    - name: List files 
+      run: |
+        ls ./ml-template
+      shell: bash
+      continue-on-error: true
 
     - name: Generate Project Template
       run: |
