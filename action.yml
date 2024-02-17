@@ -42,7 +42,7 @@ runs:
         ref: 'cookiecutter'
 
     - name: Set up Python ${{ env.PYTHON_VERSION }}
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v3
       with:
         python-version: ${{ env.PYTHON_VERSION }}
 
@@ -57,21 +57,9 @@ runs:
         git clone https://github.com/jimmfan/github-actions-cookiecutter-ml.git ./ml-template
       shell: bash
 
-    - name: List files
-      run: |
-        ls
-      shell: bash
-      continue-on-error: true
-
-    - name: List files 
-      run: |
-        ls ./ml-template
-      shell: bash
-      continue-on-error: true
-
     - name: Generate Project Template
       run: |
-        python3 generate_template.py \
+        python3 ./ml-template/generate_template.py \
         --project_name="${{ github.event.inputs.project_name }}" \
         --author="${{ github.event.inputs.author }}" \
         --email="${{ github.event.inputs.email }}" \
