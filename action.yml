@@ -61,10 +61,12 @@ runs:
     - name: list files
       run: |
         ls
+      shell: bash
 
     - name: list files temp_dir
       run: |
         ls ./temp_cookiecutter_dir
+      shell: bash
 
     - name: Generate Project Template
       working-directory: temp_cookiecutter_dir
