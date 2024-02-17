@@ -55,9 +55,8 @@ runs:
       shell: bash
 
     - name: Generate Project Template
-      working-directory: $TEMP_DIR
       run: |
-        python3 generate_template.py \
+        python3 $TEMP_DIR/generate_template.py \
         --project_name="${{ github.event.inputs.project_name }}" \
         --author="${{ github.event.inputs.author }}" \
         --email="${{ github.event.inputs.email }}" \
