@@ -74,7 +74,7 @@ runs:
       shell: bash      
 
     - name: Generate Project Template
-      # working-directory: temp_cookiecutter_dir
+      working-directory: github-actions-cookiecutter-ml
       run: |
         python3 generate_template.py \
         --template_path="${{ github.event.inputs.template_path }}" \
