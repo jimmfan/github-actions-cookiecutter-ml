@@ -58,11 +58,13 @@ runs:
         "python_version": "${{ github.event.inputs.python_version }}", \
         "output_dir": "${{ github.event.inputs.output_dir }}"
         }' > cookiecutter.json
+      shell: bash        
 
     - name: Run Cookiecutter
       run: |
         cookiecutter https://github.com/jimmfan/github-actions-cookiecutter-ml.git --no-input --config-file cookiecutter.json      
-
+      shell: bash
+      
     # - name: Clone template repository for use with cookiecutter
     #   run: |
     #     rm -rf .github
