@@ -56,8 +56,11 @@ runs:
         "author": "${{ github.event.inputs.author }}", \
         "email": "${{ github.event.inputs.email }}", \
         "python_version": "${{ github.event.inputs.python_version }}", \
-        "output_dir": "${{ github.event.inputs.output_dir }}"
+        "output_dir": "${{ github.event.inputs.output_dir }}"\
         }' > cookiecutter.json
+
+
+
       shell: bash        
 
     - name: Run Cookiecutter
