@@ -86,7 +86,7 @@ runs:
 
     - name: list files temp-template
       run: |
-        ls temp-template/test_project
+        ls test_project
       shell: bash
       continue-on-error: true        
 
