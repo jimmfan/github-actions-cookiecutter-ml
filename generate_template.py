@@ -49,6 +49,7 @@ def create_project(
         output_dir=output_dir,
         no_input=True,
         extra_context={
+            "template_path": template_path,
             "project_name": project_name,
             "author": author,
             "email": email,
