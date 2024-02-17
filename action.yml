@@ -48,27 +48,31 @@ runs:
         python3 -m pip install click==8.1.7
       shell: bash
 
-    - name: Setup inputs
+    - name: Clone template repository for use with cookiecutter
       run: |
-        echo '{"template_path": "'"${{ github.event.inputs.template_path }}"'", "project_name": "'"${{ github.event.inputs.project_name }}"'", "author": "'"${{ github.event.inputs.author }}"'", "email": "'"${{ github.event.inputs.email }}"'", "python_version": "'"${{ github.event.inputs.python_version }}"'", "output_dir": "'"${{ github.event.inputs.output_dir }}"'"}' > cookiecutter.json
-      shell: bash        
-
-    - name: Run Cookiecutter
-      run: |
-        cookiecutter https://github.com/jimmfan/github-actions-cookiecutter-ml.git --no-input --config-file cookiecutter.json      
+        rm -rf .github
+        git clone https://github.com/jimmfan/github-actions-cookiecutter-ml.git 
       shell: bash
-      
-    # - name: Clone template repository for use with cookiecutter
-    #   run: |
-    #     rm -rf .github
-    #     cookiecutter https://github.com/jimmfan/github-actions-cookiecutter-ml.git 
-    #   shell: bash
 
     - name: list all files
       run: |
         ls -R
       shell: bash
       continue-on-error: true
+
+    - name: Move files
+      run: |
+        shopt -s dotglob
+        mv ${{ github.event.inputs.project_name }}/* .
+        shopt -u dotglob
+      shell: bash
+      continue-on-error: true
+
+    - name: list all files
+      run: |
+        ls -R
+      shell: bash
+      continue-on-error: true          
 
     # - name: Cat files 
     #   run: |
