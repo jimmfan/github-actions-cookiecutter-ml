@@ -67,8 +67,9 @@ runs:
       continue-on-error: true        
 
     - name: list files temp-template
+      working-directory: ${{ env.TEMP_DIR }}
       run: |
-        ls ${{ env.TEMP_DIR }}
+        ls 
       shell: bash
       continue-on-error: true  
 
