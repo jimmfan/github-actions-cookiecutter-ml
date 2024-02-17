@@ -52,9 +52,14 @@ runs:
         python3 -m pip install click==8.1.7
       shell: bash
 
+    - name: Download generate_template.py
+      run: |
+        curl -o generate_template.py https://raw.githubusercontent.com/jimmfan/github-actions-cookiecutter-ml/main/generate_template.py
+      shell: bash      
+
     - name: Generate Project Template
       run: |
-        python3 https://github.com/jimmfan/github-actions-cookiecutter-ml/generate_template.py \
+        python3 generate_template.py \
         --project_name="${{ github.event.inputs.project_name }}" \
         --author="${{ github.event.inputs.author }}" \
         --email="${{ github.event.inputs.email }}" \
