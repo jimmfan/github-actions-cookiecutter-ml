@@ -60,12 +60,17 @@ runs:
     - name: list files
       run: |
         ls
-        ls ./ml-template
       shell: bash
       continue-on-error: true        
 
+    - name: list files ml-template
+      run: |
+        ls ./ml-template
+      shell: bash
+      continue-on-error: true  
+
     - name: Generate Project Template
-      working-directory: ./ml-template  # Sets the working directory for all commands in this step
+      working-directory: ml-template  # Sets the working directory for all commands in this step
       run: |
         python3 generate_template.py \
         --project_name="${{ github.event.inputs.project_name }}" \
