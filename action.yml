@@ -99,6 +99,7 @@ runs:
       run: |
         mv ${{ env.TEMP_DIR }}/* ../
         rm -rf ${{ env.TEMP_DIR }}
+        ls
         git add .
         git commit -m "Add new project template: ${{ github.event.inputs.project_name }}"
         git push origin cookiecutter
