@@ -91,14 +91,14 @@ runs:
 
     - name: list files temp-template
       run: |
-        ls ${{ env.TEMP_DIR }}
+        ls temp-template
       shell: bash
       continue-on-error: true        
 
     - name: Push Generated Template to Branch
       run: |
-        mv ${{ env.TEMP_DIR }}/* ../
-        rm -rf ${{ env.TEMP_DIR }}
+        mv temp-template/* ../
+        rm -rf temp-template
         ls
         git add .
         git commit -m "Add new project template: ${{ github.event.inputs.project_name }}"
