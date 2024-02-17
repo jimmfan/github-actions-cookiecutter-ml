@@ -82,6 +82,18 @@ runs:
       # --output_dir="${{ github.event.inputs.output_dir }}"
       shell: bash
 
+    - name: list files
+      run: |
+        ls
+      shell: bash
+      continue-on-error: true        
+
+    - name: list files temp-template
+      run: |
+        ls ./temp-template
+      shell: bash
+      continue-on-error: true        
+
     - name: Push Generated Template to Branch
       run: |
         git config --global user.name 'GitHub Action'
