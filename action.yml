@@ -3,11 +3,9 @@ name: Generate Cookiecutter Template
 inputs:
   template_path:
     description: 'Template Path'
-    default: 'cookiecutter-templates/template1'
     required: true
   project_name:
     description: 'Project Name'
-    default: 'default_project_name'
   author:
     description: 'Author'
   email:

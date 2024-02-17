@@ -7,7 +7,7 @@ from cookiecutter.main import cookiecutter
 @click.option(
     "--template_path",
     prompt="Template Path",
-    default="cookiecutter-templates/template1",
+    default="template1",
     help="Path to your cookiecutter template.",
 )
 @click.option(
