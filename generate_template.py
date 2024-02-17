@@ -1,5 +1,12 @@
 import click
+import os
+import shutil
 from cookiecutter.main import cookiecutter
+
+# Example function that attempts to remove an existing directory
+def remove_if_exists(path):
+    if os.path.exists(path) and os.path.isdir(path):
+        shutil.rmtree(path)
 
 # Define the path to your cookiecutter template
 TEMPLATE_PATH = 'ml-project-template'
@@ -11,7 +18,8 @@ TEMPLATE_PATH = 'ml-project-template'
 @click.option('--python_version', prompt='Python version', default='3.10', help='The Python version to use for the project.')
 
 def create_project(project_name, author, email, python_version):
-    # Additional project-specific prompts can be added here
+    output_path = os.path.join(os.getcwd(), project_name)
+    remove_if_exists(output_path)  # Remove the output directory if it exists    
 
     # Call cookiecutter to create the project using the collected inputs
     cookiecutter(
