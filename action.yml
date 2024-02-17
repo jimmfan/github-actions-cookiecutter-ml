@@ -61,6 +61,8 @@ runs:
       run: |
         ls
         ls ./ml-template
+      shell: bash
+      continue-on-error: true        
 
     - name: Generate Project Template
       working-directory: ../  # Sets the working directory for all commands in this step
