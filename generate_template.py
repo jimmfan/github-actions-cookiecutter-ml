@@ -2,7 +2,7 @@ import click
 from cookiecutter.main import cookiecutter
 
 # Define the path to your cookiecutter template
-TEMPLATE_PATH = 'https://github.com/username/ml-project-template.git'
+TEMPLATE_PATH = 'ml-project-template'
 
 @click.command()
 @click.option('--project_name', prompt='Project Name', default='ml_project', help='Project Name, used as the project directory name.')
