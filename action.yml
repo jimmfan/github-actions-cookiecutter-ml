@@ -1,9 +1,13 @@
 name: Generate Cookiecutter Template
 
 inputs:
+  template_path:
+    description: 'Template Path'
+    default: 'default_project_name'
+    required: true
   project_name:
     description: 'Project Name'
-    required: true
+    default: 'default_project_name'
   author:
     description: 'Author'
   email:
@@ -58,6 +62,7 @@ runs:
       working-directory: temp_cookiecutter_dir
       run: |
         python3 generate_template.py \
+        --template_path="${{ github.event.inputs.template_path }}" \
         --project_name="${{ github.event.inputs.project_name }}" \
         --author="${{ github.event.inputs.author }}" \
         --email="${{ github.event.inputs.email }}" \
