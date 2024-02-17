@@ -17,7 +17,6 @@ inputs:
 
 env:
   PYTHON_VERSION: '3.10' # Cookiecutter python version
-  TEMP_DIR: temp_cookiecutter_directory # something unique
 
 runs:
   using: 'composite'

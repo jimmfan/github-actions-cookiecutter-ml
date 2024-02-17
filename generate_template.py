@@ -2,8 +2,6 @@ import click
 from cookiecutter.main import cookiecutter
 
 # Define the path to your cookiecutter template
-template_path = 'ml-project-template'
-
 @click.command()
 @click.option('--project_name', prompt='Project Name', default='ml_project', help='Project Name, used as the project directory name.')
 @click.option('--author', prompt='Author name', default='jimmfan', help='The name of the project author.')
@@ -14,7 +12,7 @@ template_path = 'ml-project-template'
 def create_project(project_name, author, email, python_version, output_dir):
     # Call cookiecutter to create the project using the collected inputs
     cookiecutter(
-        template_path,
+        "./",
         output_dir=output_dir,
         no_input=True,
         extra_context={
