@@ -97,9 +97,11 @@ runs:
 
     - name: Push Generated Template to Branch
       run: |
-        mv temp-template/* ../
-        rm -rf temp-template
-        ls
+        cd temp-template/${{ github.event.inputs.project_name }}
+        shopt -s dotglob
+        mv * ../
+        cd ../../
+        rmdir temp-template
         git config --global user.name 'GitHub Action'
         git config --global user.email 'action@github.com'        
         git add .
