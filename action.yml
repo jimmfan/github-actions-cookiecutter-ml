@@ -70,9 +70,9 @@ runs:
       continue-on-error: true  
 
     - name: Generate Project Template
-      # working-directory: temp-template  # Sets the working directory for all commands in this step
+      working-directory: temp-template  # Sets the working directory for all commands in this step
       run: |
-        python3 ./temp-template/generate_template.py \
+        python3 generate_template.py \
         --project_name="${{ github.event.inputs.project_name }}" \
         --author="${{ github.event.inputs.author }}" \
         --email="${{ github.event.inputs.email }}" \
