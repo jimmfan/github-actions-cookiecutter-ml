@@ -50,10 +50,18 @@ runs:
 
     - name: Setup inputs
       run: |
-        echo '{"project_name": "${{ env.PROJECT_NAME }}", "author_name": "${{ env.AUTHOR_NAME }}"}' > cookiecutter.json
-   
+        echo '{\
+        "template_path": "${{ github.event.inputs.template_path }}", \
+        "project_name": "${{ github.event.inputs.project_name }}", \
+        "author": "${{ github.event.inputs.author }}", \
+        "email": "${{ github.event.inputs.email }}", \
+        "python_version": "${{ github.event.inputs.python_version }}", \
+        "output_dir": "${{ github.event.inputs.output_dir }}"
+        }' > cookiecutter.json
+
     - name: Run Cookiecutter
-      run: cookiecutter https://github.com/jimmfan/github-actions-cookiecutter-ml.git --no-input --config-file cookiecutter.json      
+      run: |
+        cookiecutter https://github.com/jimmfan/github-actions-cookiecutter-ml.git --no-input --config-file cookiecutter.json      
 
     # - name: Clone template repository for use with cookiecutter
     #   run: |
