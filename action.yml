@@ -57,6 +57,11 @@ runs:
         git clone https://github.com/jimmfan/github-actions-cookiecutter-ml.git ./ml-template
       shell: bash
 
+    - name: list files
+      run: |
+        ls
+        ls ./ml-template
+
     - name: Generate Project Template
       working-directory: ../  # Sets the working directory for all commands in this step
       run: |
