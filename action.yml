@@ -55,7 +55,7 @@ runs:
     - name: Clone template repository for use with cookiecutter
       run: |
         rm -rf .github
-        git clone --recurse-submodules https://github.com/jimmfan/github-actions-cookiecutter-ml.git 
+        git clone https://github.com/jimmfan/github-actions-cookiecutter-ml.git 
       shell: bash
 
     - name: list files
