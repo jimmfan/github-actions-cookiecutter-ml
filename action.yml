@@ -12,6 +12,8 @@ inputs:
   python_version:
     description: 'Project python version'
     default: '3.10'
+  output_dir: 
+    default: "../"            
   # Add more inputs as needed based on your cookiecutter.json
 
 env:
@@ -77,6 +79,7 @@ runs:
         --author="${{ github.event.inputs.author }}" \
         --email="${{ github.event.inputs.email }}" \
         --python_version="${{ github.event.inputs.python_version }}"
+        --output_dir="${{ github.event.inputs.output_dir }}"
       shell: bash
 
     - name: Push Generated Template to Branch
