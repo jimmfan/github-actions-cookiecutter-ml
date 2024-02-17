@@ -70,6 +70,12 @@ runs:
       shell: bash
       continue-on-error: true
 
+    - name: Cat files 
+      run: |
+        cat test_project/pyproject.toml
+      shell: bash
+      continue-on-error: true      
+
     - name: Generate Project Template
       working-directory: github-actions-cookiecutter-ml
       run: |
