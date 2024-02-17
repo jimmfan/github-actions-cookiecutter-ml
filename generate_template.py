@@ -9,10 +9,10 @@ from cookiecutter.main import cookiecutter
 @click.option('--python_version', prompt='Python version', default='3.10', help='The Python version to use for the project.')
 @click.option('--output_dir', prompt='Output directory', default='../', help='Output directory to where to create the template.')
 
-def create_project(project_name, author, email, python_version, output_dir):
+def create_project(template_path, project_name, author, email, python_version, output_dir):
     # Call cookiecutter to create the project using the collected inputs
     cookiecutter(
-        "./",
+        template_path,
         output_dir=output_dir,
         no_input=True,
         extra_context={
@@ -28,4 +28,5 @@ def create_project(project_name, author, email, python_version, output_dir):
     click.echo(f'Project {project_name} created successfully.')
 
 if __name__ == '__main__':
-    create_project()
+    template_path = "./"
+    create_project(template_path)
