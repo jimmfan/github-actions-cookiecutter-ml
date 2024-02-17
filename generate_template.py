@@ -10,12 +10,12 @@ from cookiecutter.main import cookiecutter
     default="template1",
     help="Path to your cookiecutter template.",
 )
-# @click.option(
-#     "--project_name",
-#     prompt="Project Name",
-#     default="ml_project",
-#     help="Project directory name.",
-# )
+@click.option(
+    "--project_name",
+    prompt="Project Name",
+    default="ml_project",
+    help="Project directory name.",
+)
 @click.option(
     "--author",
     prompt="Author name",
@@ -42,7 +42,7 @@ from cookiecutter.main import cookiecutter
 )
 def create_project(
     template_path, 
-    # project_name, 
+    project_name, 
     author, email, 
     python_version, 
     output_dir
@@ -53,7 +53,7 @@ def create_project(
         output_dir=output_dir,
         no_input=True,
         extra_context={
-            # "project_name": project_name,
+            "project_name": project_name,
             "author": author,
             "email": email,
             "python_version": python_version
