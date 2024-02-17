@@ -3,7 +3,7 @@ name: Generate Cookiecutter Template
 inputs:
   template_path:
     description: 'Template Path'
-    default: 'default_project_name'
+    default: 'cookiecutter-templates/template1'
     required: true
   project_name:
     description: 'Project Name'
