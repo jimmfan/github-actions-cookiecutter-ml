@@ -13,7 +13,7 @@ from cookiecutter.main import cookiecutter
 def create_project(project_name, author, email, python_version, output_dir):
     # Call cookiecutter to create the project using the collected inputs
     cookiecutter(
-        './ml-template',
+        'ml-template',
         output_dir=output_dir,
         no_input=True,
         extra_context={
