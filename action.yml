@@ -15,11 +15,12 @@ inputs:
     default: "../"
   # Add more inputs as needed based on your cookiecutter.json
 
-env:
-  PYTHON_VERSION: '3.10' # Cookiecutter python version
-  TEMP_DIR: temp_cookiecutter_directory # something unique
+
 
 runs:
+  env:
+    PYTHON_VERSION: '3.10' # Cookiecutter python version
+    TEMP_DIR: temp_cookiecutter_directory # something unique
   using: 'composite'
   steps:
     - name: Checkout repository
@@ -51,7 +52,7 @@ runs:
 
     - name: Clone template repository for use with cookiecutter
       run: |
-        git clone https://github.com/jimmfan/github-actions-cookiecutter-ml.git $TEMP_DIR
+        git clone https://github.com/jimmfan/github-actions-cookiecutter-ml.git ${{ env.TEMP_DIR }}
       shell: bash
 
     - name: Generate Project Template
@@ -67,7 +68,7 @@ runs:
 
     - name: Push Generated Template to Branch
       run: |
-        rm -rf $TEMP_DIR
+        rm -rf ${{ env.TEMP_DIR }}
         git status  # Check which files are staged for commit
         git config --global user.name 'GitHub Action'
         git config --global user.email 'action@github.com'        
