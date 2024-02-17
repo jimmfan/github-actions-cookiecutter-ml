@@ -54,7 +54,7 @@ runs:
 
     - name: Generate Project Template
       run: |
-        python3 ./setup_project.py \
+        python3 ${{ github.action_path }}/setup_project.py \
         --project_name="${{ github.event.inputs.project_name }}" \
         --author="${{ github.event.inputs.author }}" \
         --email="${{ github.event.inputs.email }}" \
