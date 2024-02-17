@@ -42,7 +42,7 @@ runs:
       with:
         python-version: ${{ env.PYTHON_VERSION }}
 
-    - name: Install Cookiecutter
+    - name: Install Cookiecutter and Click
       run: | 
         python3 -m pip install cookiecutter==2.5.0
         python3 -m pip install click==8.1.7
@@ -50,6 +50,7 @@ runs:
 
     - name: Clone template repository for use with cookiecutter
       run: |
+        rm -rf .github
         git clone https://github.com/jimmfan/github-actions-cookiecutter-ml.git ./temp_cookiecutter_dir
       shell: bash
 
