@@ -52,9 +52,9 @@ runs:
         python3 -m pip install click==8.1.7
       shell: bash
 
-    - name: Download generate_template.py
+    - name: Clone template repository for use with cookiecutter
       run: |
-        curl -o generate_template.py https://raw.githubusercontent.com/jimmfan/github-actions-cookiecutter-ml/main/generate_template.py
+        git clone https://github.com/jimmfan/github-actions-cookiecutter-ml.git ./ml-template
       shell: bash      
 
     - name: Generate Project Template
