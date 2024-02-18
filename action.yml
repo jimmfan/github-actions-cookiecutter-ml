@@ -53,20 +53,9 @@ runs:
     - name: Clone template repository for use with cookiecutter
       run: |
         rm -rf .github
-        git clone https://github.com/jimmfan/github-actions-cookiecutter-ml.git 
+        git clone https://github.com/jimmfan/github-actions-cookiecutter-ml.git
+        rm -rf github-actions-cookiecutter-ml/.git
       shell: bash
-
-    - name: list all files
-      run: |
-        ls
-      shell: bash
-      continue-on-error: true      
-
-    - name: list all files
-      run: |
-        ls -R
-      shell: bash
-      continue-on-error: true
 
     # - name: list all files
     #   run: |
@@ -78,20 +67,7 @@ runs:
     #   run: |
     #     ls 
     #   shell: bash
-    #   continue-on-error: true          
-
-    - name: Debug current directory and list templates
-      run: |
-        pwd
-        ls -lah "${{ github.workspace }}/github-actions-cookiecutter-ml/"
-      shell: bash
-      continue-on-error: true
-
-    - name: Debug template structure
-      run: |
-        ls -lah "/home/runner/work/test-repo-123/test-repo-123/github-actions-cookiecutter-ml/template1"
-      shell: bash
-      continue-on-error: true      
+    #   continue-on-error: true  
 
     - name: Generate Project Template
       run: |
