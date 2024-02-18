@@ -24,18 +24,18 @@ runs:
     - name: Checkout repository
       uses: actions/checkout@v3
     
-    - name: Create or switch to 'cookiecutter' branch
-      run: |
-        git fetch
-        if git branch -r | grep -qw "origin/cookiecutter"; then
-          echo "Branch exists on remote. Switching to it."
-          git checkout cookiecutter
-        else
-          echo "Branch does not exist. Creating it."
-          git checkout -b cookiecutter
-          git push -u origin cookiecutter
-        fi
-      shell: bash
+    # - name: Create or switch to 'cookiecutter' branch
+    #   run: |
+    #     git fetch
+    #     if git branch -r | grep -qw "origin/cookiecutter"; then
+    #       echo "Branch exists on remote. Switching to it."
+    #       git checkout cookiecutter
+    #     else
+    #       echo "Branch does not exist. Creating it."
+    #       git checkout -b cookiecutter
+    #       git push -u origin cookiecutter
+    #     fi
+    #   shell: bash
 
     - name: Set up Python ${{ env.PYTHON_VERSION }}
       uses: actions/setup-python@v3
@@ -119,6 +119,7 @@ runs:
 
     - name: Push Generated Template to Branch
       run: |
+        git checkout -b cookiecutter
         git status  # Check which files are staged for commit
         git config --global user.name 'GitHub Action'
         git config --global user.email 'action@github.com'        
