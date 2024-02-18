@@ -60,23 +60,24 @@ runs:
       shell: bash
       continue-on-error: true      
 
-    - name: list all files
-      run: |
-        ls -R ${{ github.event.inputs.project_name }}
-      shell: bash
-      continue-on-error: true
+    # - name: list all files
+    #   run: |
+    #     ls -R ${{ github.event.inputs.project_name }}
+    #   shell: bash
+    #   continue-on-error: true
 
-    - name: list all files
-      run: |
-        cat ${{ github.event.inputs.project_name }}/pyproject.toml
-      shell: bash
-      continue-on-error: true      
+    # - name: list all files
+    #   run: |
+    #     cat ${{ github.event.inputs.project_name }}/pyproject.toml
+    #   shell: bash
+    #   continue-on-error: true      
 
     - name: Move files
       run: |
         shopt -s dotglob
-        mv ${{ github.event.inputs.project_name }}/* .
+        mv github-actions-cookiecutter-ml/* .
         shopt -u dotglob
+        rm -rf .github
       shell: bash
       continue-on-error: true
 
