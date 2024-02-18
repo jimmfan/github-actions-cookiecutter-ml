@@ -83,6 +83,13 @@ runs:
         pwd
         ls -lah "${{ github.workspace }}/github-actions-cookiecutter-ml/"
       shell: bash
+      continue-on-error: true
+
+    - name: Debug template structure
+      run: |
+        ls -lah "/home/runner/work/test-repo-123/test-repo-123/github-actions-cookiecutter-ml/template1"
+      shell: bash
+      continue-on-error: true      
 
     - name: Generate Project Template
       run: |
