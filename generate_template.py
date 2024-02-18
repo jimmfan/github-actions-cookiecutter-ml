@@ -47,6 +47,8 @@ def create_project(
     python_version, 
     output_dir
 ):
+    print(f"Using template path: {template_path}")
+    
     # Call cookiecutter to create the project using the collected inputs
     cookiecutter(
         template_path,
