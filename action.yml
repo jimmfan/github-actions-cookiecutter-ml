@@ -95,13 +95,11 @@ runs:
         --python_version="${{ github.event.inputs.python_version }}" \
         --output_dir="${{ github.event.inputs.output_dir }}"
       shell: bash
-      continue-on-error: true        
 
     - name: list all files
       run: |
         ls -R ${{ github.event.inputs.project_name }}
       shell: bash
-      continue-on-error: true      
 
     # - name: Clean and move files
     #   run: |
