@@ -4,6 +4,8 @@ inputs:
   template_path:
     description: 'Template Path'
     required: true
+  project_name:
+    description: 'Project name'
   author:
     description: 'Author'
   email:
