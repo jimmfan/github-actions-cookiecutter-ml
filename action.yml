@@ -85,9 +85,9 @@ runs:
     #   continue-on-error: true      
 
     - name: Generate Project Template
-      working-directory: github-actions-cookiecutter-ml
+      # working-directory: github-actions-cookiecutter-ml
       run: |
-        python3 generate_template.py \
+        python3 ./github-actions-cookiecutter-ml/generate_template.py \
         --template_path="${{ github.event.inputs.template_path }}" \
         --project_name="${{ github.event.inputs.project_name }}" \
         --author="${{ github.event.inputs.author }}" \
