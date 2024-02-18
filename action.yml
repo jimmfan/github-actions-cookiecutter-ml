@@ -56,9 +56,21 @@ runs:
 
     - name: list all files
       run: |
-        ls -R
+        ls
+      shell: bash
+      continue-on-error: true      
+
+    - name: list all files
+      run: |
+        ls -R ${{ github.event.inputs.project_name }}
       shell: bash
       continue-on-error: true
+
+    - name: list all files
+      run: |
+        cat ${{ github.event.inputs.project_name }}/pyproject.toml
+      shell: bash
+      continue-on-error: true      
 
     - name: Move files
       run: |
